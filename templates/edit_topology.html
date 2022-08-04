@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<!-- third party css -->
+<link href="{% static 'libs/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables/responsive.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables/buttons.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables/select.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+<!-- third party css end -->
+
+<!-- Footable css -->
+<link href="{% static 'libs/footable/footable.core.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
+<div class="content-page">
+    <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/topology/">Workplace User Typology</a></li>
+                                <li class="breadcrumb-item"><a href="/topology/">Add member</a></li>
+                                <li class="breadcrumb-item active">Edit member</li>
+                            </ol>
+                        </div>
+                        <h4 class="page-title">Edit member</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <form action="{% url 'topology:updaterecord' mytopology.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Full Name</label>
+                        <input type="text" class="form-control" name="full_name" value="{{ mytopology.full_name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Department</label>
+                        <input type="text" class="form-control" name="department" value="{{ mytopology.department }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Division</label>
+                        <select class="form-control" id="exampleFormControlSelect1"
+                            name="division">
+                            <option>Production division</option>
+                            <option>Marketing division</option>
+                            <option>General division</option>
+                            <option>Personnel division</option>
+                            <option>Human resource division</option>
+                            <option>Advertising division</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Topology Type</label>
+                        <select class="form-control" id="exampleFormControlSelect1"
+                            name="type_topology">
+                            <option>Bus Topology</option>
+                            <option>Star Topology</option>
+                            <option>Ring Topology</option>
+                        </select>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </form>
+
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+            {% endblock %}
+
+            {% block js %}
+
+            <!-- third party js -->
+            <script src="{% static 'libs/datatables/jquery.dataTables.min.js' %}"></script>
+            <script src="{% static 'libs/datatables/dataTables.bootstrap4.js' %}"></script>
+            <script src="{% static 'libs/datatables/dataTables.responsive.min.js' %}"></script>
+            <script src="{% static 'libs/datatables/responsive.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'libs/datatables/dataTables.buttons.min.js' %}"></script>
+            <script src="{% static 'libs/datatables/buttons.bootstrap4.min.js' %}"></script>
+            <script src="{% static 'libs/datatables/buttons.html5.min.js' %}"></script>
+            <script src="{% static 'libs/datatables/buttons.flash.min.js' %}"></script>
+            <script src="{% static 'libs/datatables/buttons.print.min.js' %}"></script>
+            <script src="{% static 'libs/datatables/dataTables.keyTable.min.js' %}"></script>
+            <script src="{% static 'libs/datatables/dataTables.select.min.js' %}"></script>
+            <script src="{% static 'libs/pdfmake/pdfmake.min.js' %}"></script>
+            <script src="{% static 'libs/pdfmake/vfs_fonts.js' %}"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+            <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"></script>
+
+            <!-- third party js ends -->
+
+            <!-- Datatables init -->
+            <script src="{% static 'js/pages/datatables.init.js' %}"></script>
+
+            {% endblock %}
